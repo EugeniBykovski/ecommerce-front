@@ -3,19 +3,18 @@
 import { ShoppingCart } from "../node_modules/lucide-react";
 
 import Currency from "@/components/ui/currency";
-import Button from "@/components/ui/button";
 import { Product } from "@/types";
-// import useCart from "@/hooks/use-cart";
+import useCart from "@/hooks/use-cart";
 
 interface InfoProps {
   data: Product;
 }
 
 const Info: React.FC<InfoProps> = ({ data }) => {
-  // const cart = useCart();
+  const cart = useCart();
 
   const onAddToCart = () => {
-    // cart.addItem(data);
+    cart.addItem(data);
   };
 
   return (
@@ -41,10 +40,13 @@ const Info: React.FC<InfoProps> = ({ data }) => {
         </div>
       </div>
       <div className="mt-10 flex items-center gap-x-3">
-        <Button onClick={onAddToCart} className="flex items-center px-4">
+        <button
+          onClick={onAddToCart}
+          className="flex items-center px-4 w-auto rounded-full bg-black border-transparent px5 py-3 disabled:cursor-not-allowed disabled:opacity-50 text-white font-semibold hover:opacity-75 transition"
+        >
           Add To Cart
           <ShoppingCart size={20} className="ml-2" />
-        </Button>
+        </button>
       </div>
     </div>
   );
